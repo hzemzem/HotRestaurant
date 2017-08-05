@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+
 // tables array of objects
 var tables = [{
 	name: "Richard",
@@ -47,9 +48,18 @@ app.get("/view", function(req, res) {
   res.sendFile(path.join(__dirname, "view.html"));
 });
 
+app.get("/api/tables", function(req, res) {
+  res.json(tables);
+});
+
+app.get("/api/waitlist", function(req, res) {
+  res.json(waitlist);
+});
+
+
 // Display all reserved tables
-app.get("/api/:tables?", function(req, res) {
-  var chosen = req.params.tables;
+app.get("/api/:anyVar?", function(req, res) {
+  var chosen = req.params.anyVar;
 
   if (chosen) {
     console.log(chosen);
@@ -67,7 +77,7 @@ app.get("/api/:tables?", function(req, res) {
 
 app.post("/api/new", function(req, res) {
   var newReservation = req.body;
-  newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
+  // newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
 
   console.log(newReservation);
 

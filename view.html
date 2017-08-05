@@ -28,7 +28,7 @@
           <div class="panel-heading">
             <h3 class="panel-title"><strong>Current Reservations</strong></h3>
           </div>
-          <div class="panel-body">
+          <div class="panel-body" id="reservations">
           </div>
         </div>
 
@@ -36,7 +36,7 @@
           <div class="panel-heading">
             <h3 class="panel-title"><strong>Waiting List</strong></h3>
           </div>
-          <div class="panel-body">
+          <div class="panel-body" id="waitlists">
           </div>
         </div>
       </div>
@@ -53,5 +53,27 @@
 			</div>
 		</div>
   </div>
+  <script type="text/javascript">
+    $.get("/api/tables", function(data) {
+      for (var i = 0; i < data.length; i++) {
+        var wellSection = $("<div>");
+        wellSection.addClass("well");
+        wellSection.attr("id", "table-well-" + i);
+        $("#reservations").append(wellSection);
+
+       $("#table-well-" + i).append("<h2>" + data[i].name + "</h2>");
+      }
+    });
+    $.get("/api/waitlist", function(data) {
+      for (var i = 0; i < data.length; i++) {
+        var wellSection = $("<div>");
+        wellSection.addClass("well");
+        wellSection.attr("id", "waitlist-well-" + i);
+        $("#waitlists").append(wellSection);
+
+       $("#waitlist-well-" + i).append("<h2>" + data[i].name + "</h2>");
+      }
+    });
+  </script>
 </body>
 </html>
