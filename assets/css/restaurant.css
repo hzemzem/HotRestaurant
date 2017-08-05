@@ -1,0 +1,5 @@
+#nav li {
+    border-right: 1px solid #666;
+    float: left;
+    padding: 0 5px 0 5px; 
+}
