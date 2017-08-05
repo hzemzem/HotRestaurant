@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+// tables array of objects
 var tables = [{
 	name: "Richard",
 	phone: "770-777-9999",
@@ -31,6 +32,7 @@ var tables = [{
 	uniqueId: "Gigi"
 }];
 
+// array to hold the list of tables waitlisted
 var waitlist = [];
 
 app.get("/", function(req, res) {
